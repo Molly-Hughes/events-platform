@@ -1,1 +1,1 @@
-# events-platform
+# Togetherhood - Events Platform
