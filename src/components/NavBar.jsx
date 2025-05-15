@@ -5,6 +5,7 @@ export function NavBar() {
     <>
       <Link to="/">Home</Link>
       <Link to="/about">About</Link>
+      <Link to="/sign-in">Sign In</Link>
     </>
   );
 }
