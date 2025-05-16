@@ -1,4 +1,5 @@
 import { ContactUs } from "../components/ContactUs";
+import { Testimonials } from "../components/Testimonials";
 
 export function AboutPage() {
   return (
@@ -52,6 +53,7 @@ export function AboutPage() {
         </section>
       </main>
 
+      <Testimonials />
       <ContactUs />
     </>
   );
