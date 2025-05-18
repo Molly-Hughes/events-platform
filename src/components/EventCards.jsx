@@ -68,7 +68,7 @@ export function EventCards() {
   };
 
   return (
-    <div>
+    <div className="space-y-6 p-6 sm:px-8 sm:py-8 md:p-12 lg:p-16 2xl:px-18 2xl:py-16">
       {fetchError && <p>{fetchError}</p>}
 
       {events ? (
