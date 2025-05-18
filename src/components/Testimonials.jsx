@@ -21,7 +21,7 @@ export function Testimonials() {
   const { testimonial, name } = testimonialData[currentIndex];
 
   return (
-    <section>
+    <section className="space-y-6 p-6 sm:px-8 sm:py-8 md:p-12 lg:p-16 2xl:px-18 2xl:py-16">
       <h2>What our community says</h2>
 
       <div>
