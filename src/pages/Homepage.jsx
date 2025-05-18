@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Testimonials } from "../components/Testimonials";
 import { ContactUs } from "../components/ContactUs";
+import { UpcomingEvents } from "../components/UpcomingEvents";
 
 export function Homepage() {
   return (
@@ -38,6 +39,8 @@ export function Homepage() {
           life.
         </p>
       </section>
+
+      <UpcomingEvents />
 
       <Testimonials />
 
