@@ -1,3 +1,12 @@
+import { CreateAnEvent } from "../components/CreateAnEvent";
+import { EventCards } from "../components/EventCards";
+
 export function DashboardPage() {
-  return <h1>Hello from dashboard page</h1>;
+  return (
+    <>
+      <CreateAnEvent />
+      <h2>Manage events</h2>
+      <EventCards />
+    </>
+  );
 }
