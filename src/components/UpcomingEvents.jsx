@@ -1,5 +1,4 @@
 import { EventCards } from "./EventCards";
-import { Link } from "react-router-dom";
 
 export function UpcomingEvents() {
   return (
@@ -15,7 +14,6 @@ export function UpcomingEvents() {
         </div>
       </section>
       <EventCards />
-      <Link to="/events">View all events</Link>
     </div>
   );
 }
