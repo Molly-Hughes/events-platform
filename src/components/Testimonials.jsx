@@ -21,33 +21,47 @@ export function Testimonials() {
   const { testimonial, name } = testimonialData[currentIndex];
 
   return (
-    <section className="space-y-6 p-6 sm:px-8 sm:py-8 md:p-12 lg:p-16 2xl:px-18 2xl:py-16">
-      <h2>What our community says</h2>
+    <section className="bg-frenchViolet text-antiFlashWhite px-6 py-12 sm:px-8 md:py-16 lg:px-16 xl:px-20 2xl:px-24">
+      <div className="max-w-screen-xl mx-auto space-y-10">
+        <h2 className="text-center text-3xl font-semibold">
+          What our community says
+        </h2>
 
-      <div>
-        <div>
-          <BiSolidQuoteLeft />
-          <p>{testimonial}</p>
-          <p>{name}</p>
-        </div>
+        <div className="relative max-w-2xl mx-auto">
+          <div className="p-6 sm:p-8 bg-antiFlashWhite text-darkPurple rounded-xl space-y-4 shadow-sm border border-blueGray transition-all duration-500 ease-in-out">
+            <BiSolidQuoteLeft className="h-8 w-8 text-frenchViolet" />
+            <p className="text-lg">{testimonial}</p>
+            <p className="font-semibold">{name}</p>
+          </div>
 
-        <div>
-          <button onClick={handlePrev}>← Previous</button>
-          <button onClick={handleNext}>Next →</button>
-        </div>
-
-        <div>
-          {testimonialData.map((_, index) => (
+          <div className="flex justify-between items-center mt-6 text-base font-medium">
             <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full ${
-                index === currentIndex
-                  ? "bg-blueGray"
-                  : "bg-white hover:bg-gray-400"
-              }`}
-            />
-          ))}
+              onClick={handlePrev}
+              className="hover:underline hover:text-blueGray transition"
+            >
+              Previous
+            </button>
+            <button
+              onClick={handleNext}
+              className="hover:underline hover:text-blueGray transition"
+            >
+              Next
+            </button>
+          </div>
+
+          <div className="flex justify-center mt-4 space-x-2">
+            {testimonialData.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition ${
+                  index === currentIndex
+                    ? "bg-blueGray scale-110"
+                    : "bg-antiFlashWhite hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
