@@ -1,4 +1,4 @@
-import { supabase } from "../supabaseClient";
+import { supabase } from "../utils/supabaseClient";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
