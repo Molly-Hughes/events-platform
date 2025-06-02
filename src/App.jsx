@@ -8,6 +8,7 @@ import { ContactPage } from "./pages/ContactPage";
 import { SignInPage } from "./pages/SignInPage";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </div>
