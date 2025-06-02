@@ -1,3 +1,9 @@
+import { ContactUs } from "../components/ContactUs";
+
 export function ContactPage() {
-  return <h1>Hello from contact page</h1>;
+  return (
+    <main>
+      <ContactUs />
+    </main>
+  );
 }
