@@ -1,19 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../utils/supabaseClient";
 import { FaClock, FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
+import { SignupForm } from "../components/SignUpForm";
 
 export function EventDetailsPage() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [submitMessage, setSubmitMessage] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [formErrors, setFormErrors] = useState({ name: "", email: "" });
+  const [showCalendarButton, setShowCalendarButton] = useState(false);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -35,51 +32,28 @@ export function EventDetailsPage() {
     fetchEvent();
   }, [id]);
 
-  const validateForm = () => {
-    const errors = { name: "", email: "" };
-    let valid = true;
+  const getGoogleCalendarUrl = () => {
+    if (!event) return "#";
 
-    if (name.trim().length < 2) {
-      errors.name = "Name must be at least 2 characters.";
-      valid = false;
-    }
+    const formatDateTime = (date, time) => {
+      const [hour, minute] = time.split(":");
+      const dateObj = new Date(date);
+      dateObj.setHours(hour, minute);
+      return dateObj.toISOString().replace(/[-:]|\.\d{3}/g, "");
+    };
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      errors.email = "Enter a valid email address.";
-      valid = false;
-    }
+    const start = formatDateTime(event.date, event.starting_time);
+    const end = formatDateTime(event.date, event.closing_time);
 
-    setFormErrors(errors);
-    return valid;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitMessage("");
-    setSubmitting(true);
-
-    if (!validateForm()) {
-      setSubmitting(false);
-      return;
-    }
-
-    const { error } = await supabase.from("signups").insert({
-      name,
-      email,
-      event_id: id,
+    const params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: event.title,
+      dates: `${start}/${end}`,
+      details: event.description || "",
+      location: event.location || "",
     });
 
-    if (error) {
-      setSubmitMessage("Something went wrong. Please try again.");
-    } else {
-      setSubmitMessage("You've successfully signed up for this event!");
-      setName("");
-      setEmail("");
-      setFormErrors({ name: "", email: "" });
-    }
-
-    setSubmitting(false);
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
   };
 
   if (loading) return <p className="text-center py-12">Loading...</p>;
@@ -121,73 +95,24 @@ export function EventDetailsPage() {
           <h2 className="text-2xl font-semibold text-frenchViolet">
             Sign up for the event
           </h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium mb-1">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                placeholder="Enter your full name"
-                onChange={(e) => setName(e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  formErrors.name
-                    ? "border-red-500 focus:ring-red-400"
-                    : "border-gray-300 focus:ring-frenchViolet"
-                }`}
-                required
-              />
-              {formErrors.name && (
-                <p className="text-sm text-red-500 mt-1">{formErrors.name}</p>
-              )}
-            </div>
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                placeholder="Enter your email address"
-                onChange={(e) => setEmail(e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  formErrors.email
-                    ? "border-red-500 focus:ring-red-400"
-                    : "border-gray-300 focus:ring-frenchViolet"
-                }`}
-                required
-              />
-              {formErrors.email && (
-                <p className="text-sm text-red-500 mt-1">{formErrors.email}</p>
-              )}
-            </div>
+          <SignupForm
+            eventId={id}
+            onSuccess={() => setShowCalendarButton(true)}
+          />
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className={`bg-frenchViolet text-white px-6 py-2 rounded-full hover:bg-darkPurple transition ${
-                submitting ? "opacity-60 cursor-not-allowed" : ""
-              }`}
-            >
-              {submitting ? "Signing Up..." : "Sign Up"}
-            </button>
-
-            {submitMessage && (
-              <p
-                className={`text-sm mt-3 text-center ${
-                  submitMessage.toLowerCase().includes("success")
-                    ? "text-green-600"
-                    : "text-red-600"
-                }`}
+          {showCalendarButton && (
+            <div className="pt-6 text-center">
+              <a
+                href={getGoogleCalendarUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full transition"
               >
-                {submitMessage}
-              </p>
-            )}
-          </form>
+                Add to Google Calendar
+              </a>
+            </div>
+          )}
         </div>
       </section>
     </main>
