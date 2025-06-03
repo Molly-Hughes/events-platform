@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
@@ -6,9 +6,15 @@ import { useState } from "react";
 export function NavBar() {
   const { user, signOut } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
   };
 
   return (
@@ -24,41 +30,21 @@ export function NavBar() {
 
       {isMobileMenuOpen && (
         <div className="flex flex-col gap-4 mt-4 md:hidden">
-          <Link
-            to="/"
-            onClick={toggleMobileMenu}
-            className="active:text-frenchViolet"
-          >
+          <Link to="/" onClick={toggleMobileMenu}>
             Home
           </Link>
-          <Link
-            to="/about"
-            onClick={toggleMobileMenu}
-            className="active:text-frenchViolet"
-          >
+          <Link to="/about" onClick={toggleMobileMenu}>
             About
           </Link>
-          <Link
-            to="/events"
-            onClick={toggleMobileMenu}
-            className="active:text-frenchViolet"
-          >
+          <Link to="/events" onClick={toggleMobileMenu}>
             Events
           </Link>
           {user ? (
-            <Link
-              to="/dashboard"
-              onClick={toggleMobileMenu}
-              className="active:text-frenchViolet"
-            >
+            <Link to="/dashboard" onClick={toggleMobileMenu}>
               Dashboard
             </Link>
           ) : (
-            <Link
-              to="/contact"
-              onClick={toggleMobileMenu}
-              className="active:text-frenchViolet"
-            >
+            <Link to="/contact" onClick={toggleMobileMenu}>
               Contact
             </Link>
           )}
@@ -67,7 +53,7 @@ export function NavBar() {
               <span>{user.email}</span>
               <button
                 onClick={() => {
-                  signOut();
+                  handleSignOut();
                   toggleMobileMenu();
                 }}
                 className="bg-frenchViolet px-3 py-1 rounded-full"
@@ -114,7 +100,7 @@ export function NavBar() {
             <>
               <span>{user.email}</span>
               <button
-                onClick={signOut}
+                onClick={handleSignOut}
                 className="bg-frenchViolet px-3 py-1 rounded-full hover:bg-antiFlashWhite hover:text-frenchViolet"
               >
                 Log Out
