@@ -1,4 +1,3 @@
-// components/EventCardGrid.jsx
 import { FaEdit } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
