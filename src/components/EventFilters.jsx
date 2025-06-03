@@ -17,7 +17,7 @@ export function EventFilters({
       <input
         type="text"
         placeholder="Search by title or description"
-        className="w-full md:w-1/3 px-4 py-2 rounded border"
+        className="bg-white w-full focus:outline-frenchViolet md:w-1/3 px-4 py-2 rounded border"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
@@ -25,7 +25,7 @@ export function EventFilters({
       <select
         value={selectedLocation}
         onChange={(e) => setSelectedLocation(e.target.value)}
-        className="w-full md:w-1/4 px-4 py-2 rounded border"
+        className="bg-white focus:outline-frenchViolet w-full md:w-1/4 px-4 py-2 rounded border"
       >
         <option value="">All Locations</option>
         {uniqueLocations.map((loc) => (
@@ -37,7 +37,7 @@ export function EventFilters({
 
       <input
         type="date"
-        className="w-full md:w-1/5 px-4 py-2 rounded border"
+        className="bg-white focus:outline-frenchViolet w-full md:w-1/5 px-4 py-2 rounded border"
         value={selectedDate}
         onChange={(e) => setSelectedDate(e.target.value)}
       />
@@ -45,7 +45,7 @@ export function EventFilters({
       <select
         value={sortOrder}
         onChange={(e) => setSortOrder(e.target.value)}
-        className="w-full md:w-1/6 px-4 py-2 rounded border"
+        className="bg-white focus:outline-frenchViolet w-full md:w-1/6 px-4 py-2 rounded border"
       >
         <option value="asc">Date ascending</option>
         <option value="desc">Date descending</option>
