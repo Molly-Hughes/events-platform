@@ -4,6 +4,8 @@ Togetherhood is a community-based event platform built to help local organisatio
 
 Members of the community can browse events, sign up for events, and add events directly to their Google Calendar. Staff members can manage events through a secure dashboard.
 
+**Live site:** https://togetherhood.netlify.app/
+
 ## Features
 
 - Browse a list of upcoming community events.
