@@ -1,4 +1,5 @@
 import { EventCards } from "../components/EventCards";
+import eventImage from "../assets/hillary-ungson-TdpSX7XAcKo-unsplash (1).jpg";
 
 export function EventsPage() {
   return (
@@ -18,15 +19,13 @@ export function EventsPage() {
           </div>
           <div className="w-full lg:w-1/2">
             <img
-              src="src/assets/hillary-ungson-TdpSX7XAcKo-unsplash (1).jpg"
+              src={eventImage}
               alt="Community event"
-              className="
-                w-full 
+              className=" w-full 
                 h-48 sm:h-56 md:h-64 lg:h-80 
                 object-cover 
                 rounded-xl 
-                shadow-lg
-              "
+                shadow-lg"
             />
           </div>
         </div>
