@@ -91,7 +91,7 @@ export function EventDetailsPage() {
       </section>
 
       <section className="flex justify-center">
-        <div className="bg-antiFlashWhite border border-frenchViolet/20 p-6 sm:p-8 rounded-xl shadow-sm w-full max-w-xl space-y-6">
+        <div className="bg-antiFlashWhite border border-frenchViolet/20 p-6 sm:p-8 rounded-xl shadow-sm w-full space-y-6">
           <h2 className="text-2xl font-semibold text-frenchViolet">
             Sign up for the event
           </h2>
