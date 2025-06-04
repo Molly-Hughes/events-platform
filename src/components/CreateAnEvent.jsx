@@ -39,8 +39,7 @@ export function CreateAnEvent() {
 
   const validate = () => {
     const newErrors = {};
-    const { title, description, location, date, starting_time, closing_time } =
-      formData;
+    const { title, description, location, date, starting_time, closing_time } = formData;
 
     if (!title || title.length < 5)
       newErrors.title = "Title must be at least 5 characters.";
@@ -109,17 +108,13 @@ export function CreateAnEvent() {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col lg:flex-row justify-between items-center gap-6">
-      <div className="lg:w-1/3 space-y-2 text-center lg:text-left">
-        <h2 className="text-2xl font-semibold text-frenchViolet">
-          Create an event
-        </h2>
-        <p className="text-base text-gray-700">
-          To create an event, please use the form below.
-        </p>
-      </div>
+    <section className="bg-white shadow-md rounded-2xl p-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <header className="lg:w-1/3 space-y-2 text-center lg:text-left">
+        <h2 className="text-2xl font-semibold text-frenchViolet">Create an event</h2>
+        <p className="text-base text-gray-700">To create an event, please use the form below.</p>
+      </header>
 
-      <form onSubmit={handleSubmit} className="lg:w-2/3 w-full space-y-4 ">
+      <form onSubmit={handleSubmit} className="lg:w-2/3 w-full space-y-4">
         {[
           { name: "title", type: "text", placeholder: "Event title" },
           { name: "description", type: "text", placeholder: "Description" },
@@ -129,21 +124,29 @@ export function CreateAnEvent() {
           { name: "closing_time", type: "time" },
         ].map(({ name, type, placeholder }) => (
           <div key={name}>
+            <label htmlFor={name} className="sr-only capitalize">
+              {name}
+            </label>
             <input
+              id={name}
               type={type}
               name={name}
               placeholder={placeholder}
               value={formData[name]}
               onChange={handleChange}
+              required
+              aria-invalid={!!errors[name]}
+              aria-describedby={errors[name] ? `${name}-error` : undefined}
               className={`text-base w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 transition ${
                 errors[name]
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-frenchViolet"
               }`}
-              required
             />
             {errors[name] && (
-              <p className="text-red-600 text-sm mt-1">{errors[name]}</p>
+              <p id={`${name}-error`} className="text-red-600 text-sm mt-1" role="alert">
+                {errors[name]}
+              </p>
             )}
           </div>
         ))}
@@ -151,7 +154,9 @@ export function CreateAnEvent() {
         <button
           type="submit"
           disabled={submitting}
-          className={`w-full bg-frenchViolet text-white font-medium py-2 px-4 rounded-xl hover:bg-darkPurple transition ${
+          aria-disabled={submitting}
+          aria-busy={submitting}
+          className={`w-full bg-frenchViolet text-white font-medium py-2 px-4 rounded-xl hover:bg-darkPurple transition motion-safe:transition ${
             submitting ? "opacity-60 cursor-not-allowed" : ""
           }`}
         >
@@ -159,11 +164,11 @@ export function CreateAnEvent() {
         </button>
 
         {message && (
-          <p className="mt-4 text-center font-medium text-frenchViolet">
+          <p className="mt-4 text-center font-medium text-frenchViolet" role="status" aria-live="polite">
             {message}
           </p>
         )}
       </form>
-    </div>
+    </section>
   );
 }

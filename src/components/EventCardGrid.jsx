@@ -30,11 +30,14 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
   };
 
   return (
-    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section
+      aria-label="Event Cards"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+    >
       {events.map((event) => (
-        <div
+        <article
           key={event.id}
-          className="bg-darkPurple border border-gray-200 rounded-xl p-6 flex flex-col justify-between space-y-4 transition-all"
+          className="bg-darkPurple border border-gray-200 rounded-xl p-6 flex flex-col justify-between shadow-md"
         >
           {user && location.pathname === "/dashboard" && (
             <div className="flex justify-end gap-4">
@@ -48,13 +51,15 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
                     date: event.date,
                   });
                 }}
-                className="text-antiFlashWhite hover:text-gray-400 transform hover:scale-110 transition"
+                aria-label={`Edit event "${event.title}"`}
+                className="text-antiFlashWhite hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-frenchViolet rounded transition"
               >
                 <FaEdit />
               </button>
               <button
                 onClick={() => handleDelete(event.id)}
-                className="text-red-500 hover:text-red-700 transform hover:scale-110 transition"
+                aria-label={`Delete event "${event.title}"`}
+                className="text-red-500 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 rounded transition"
               >
                 <AiFillDelete />
               </button>
@@ -64,18 +69,24 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
           {editingEventId === event.id ? (
             <form
               onSubmit={(e) => handleEditSubmit(e, event.id)}
-              className="space-y-2"
+              className="space-y-3 mt-4"
+              aria-label={`Edit form for event "${event.title}"`}
             >
               <input
                 type="text"
-                className="w-full border p-2 rounded text-antiFlashWhite"
+                name="title"
+                aria-label="Edit event title"
+                className="w-full border rounded p-2 bg-white text-darkPurple"
                 value={editFormData.title}
                 onChange={(e) =>
                   setEditFormData({ ...editFormData, title: e.target.value })
                 }
+                required
               />
               <textarea
-                className="w-full border p-2 rounded text-antiFlashWhite"
+                name="description"
+                aria-label="Edit event description"
+                className="w-full border rounded p-2 bg-white text-darkPurple"
                 value={editFormData.description}
                 onChange={(e) =>
                   setEditFormData({
@@ -83,34 +94,42 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
                     description: e.target.value,
                   })
                 }
+                required
               />
               <input
                 type="text"
-                className="w-full border p-2 rounded text-antiFlashWhite"
+                name="location"
+                aria-label="Edit event location"
+                className="w-full border rounded p-2 bg-white text-darkPurple"
                 value={editFormData.location}
                 onChange={(e) =>
                   setEditFormData({ ...editFormData, location: e.target.value })
                 }
+                required
               />
               <input
                 type="date"
-                className="w-full border p-2 rounded text-antiFlashWhite"
+                name="date"
+                aria-label="Edit event date"
+                className="w-full border rounded p-2 bg-white text-darkPurple"
                 value={editFormData.date}
                 onChange={(e) =>
                   setEditFormData({ ...editFormData, date: e.target.value })
                 }
+                required
               />
-              <div className="flex justify-between mt-4">
+
+              <div className="flex justify-between gap-4 pt-2">
                 <button
                   type="submit"
-                  className="bg-frenchViolet text-antiFlashWhite px-4 py-2 rounded hover:bg-antiFlashWhite hover:text-frenchViolet transition"
+                  className="bg-frenchViolet text-white px-4 py-2 rounded hover:bg-antiFlashWhite hover:text-frenchViolet transition"
                 >
                   Save
                 </button>
                 <button
                   type="button"
                   onClick={() => setEditingEventId(null)}
-                  className="text-antiFlashWhite hover:text-frenchViolet transition"
+                  className="text-white hover:text-frenchViolet transition"
                 >
                   Cancel
                 </button>
@@ -118,11 +137,13 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
             </form>
           ) : (
             <>
-              <h3 className="text-xl font-semibold text-antiFlashWhite">
-                {event.title}
-              </h3>
-              <p className="text-sm text-antiFlashWhite">{event.date}</p>
-              <p className="text-antiFlashWhite">{event.description}</p>
+              <header className="space-y-1 mt-2">
+                <h3 className="text-xl font-semibold text-antiFlashWhite">
+                  {event.title}
+                </h3>
+                <p className="text-sm text-gray-300">{event.date}</p>
+              </header>
+              <p className="text-antiFlashWhite mt-2">{event.description}</p>
               <Link
                 to={`/events/${event.id}`}
                 className="mt-4 inline-block w-full text-center bg-frenchViolet text-antiFlashWhite font-medium py-2 px-4 rounded hover:bg-white hover:text-darkPurple transition"
@@ -131,8 +152,8 @@ export function EventCardGrid({ events, user, onEventUpdate }) {
               </Link>
             </>
           )}
-        </div>
+        </article>
       ))}
-    </div>
+    </section>
   );
 }
