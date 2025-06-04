@@ -8,11 +8,11 @@ export function Homepage() {
     <div className="bg-antiFlashWhite text-darkPurple">
       <section className="flex flex-col justify-center min-h-screen w-full bg-antiFlashWhite text-darkPurple">
         <div className="max-w-screen-xl mx-auto flex flex-col gap-6 px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 text-left md:text-center">
-          <h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
             Find events <br />
             <span className="text-frenchViolet">in your community.</span>
           </h1>
-          <p>
+          <p className="text-lg sm:text-xl max-w-3xl">
             Togetherhood is a community platform designed to bring people
             together through local events. Whether you're looking to meet new
             people or discover exciting activities, Togetherhood helps you
@@ -34,37 +34,42 @@ export function Homepage() {
           </div>
         </div>
       </section>
+      <section className="bg-darkPurple text-antiFlashWhite w-full px-6 py-16 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        <div className="max-w-screen-xl mx-auto space-y-8">
+          <h2 className="text-3xl font-bold text-center">How it works</h2>
 
-      <section className="bg-darkPurple text-antiFlashWhite max-w-screen mx-auto space-y-6 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 2xl:p-24">
-        <h2>How it works</h2>
-        <p>
-          Joining our local community has never been easier. With Togetherhood,
-          you can discover and join local events in just a few clicks.
-        </p>
+          <p className="text-base sm:text-lg max-w-2xl mx-auto text-center">
+            Joining your local community has never been easier. With
+            Togetherhood, you can discover and join local events in just a few
+            clicks.
+          </p>
 
-        <div className="flex flex-col gap-6 sm:flex-row sm:gap-8 md:gap-10 lg:gap-12 xl:gap-14 2xl:gap-16">
-          <div className="bg-antiFlashWhite text-darkPurple rounded-xl p-4 sm:flex-1 flex flex-col min-h-[200px]">
-            <h3 className="text-frenchViolet mb-2">Find local events</h3>
-            <p className="flex-grow">
-              Browse events in your area. From community meetups to volunteer
-              opportunities, you can find activities that match your interests.
-            </p>
-          </div>
+          <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+            <div className="bg-antiFlashWhite text-darkPurple rounded-xl p-6 flex-1 shadow-md space-y-3">
+              <h3 className="text-xl font-semibold text-frenchViolet">
+                Find local events
+              </h3>
+              <p className="text-sm sm:text-base">
+                Browse events in your area — from community meetups to volunteer
+                opportunities, find activities that match your interests.
+              </p>
+            </div>
 
-          <div className="bg-antiFlashWhite text-darkPurple rounded-xl p-4 sm:flex-1 flex flex-col min-h-[200px]">
-            <h3 className="text-frenchViolet mb-2">Sign up and join</h3>
-            <p className="flex-grow">
-              Sign up for an event and become part of something bigger. Meet
-              like-minded people and take part in your community's social life.
-            </p>
+            <div className="bg-antiFlashWhite text-darkPurple rounded-xl p-6 flex-1 shadow-md space-y-3">
+              <h3 className="text-xl font-semibold text-frenchViolet">
+                Sign up and join
+              </h3>
+              <p className="text-sm sm:text-base">
+                Sign up for an event and be part of something bigger. Meet
+                like-minded people and take part in your community's social
+                life.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-
       <UpcomingEvents />
-
       <Testimonials />
-
       <ContactUs />
     </div>
   );

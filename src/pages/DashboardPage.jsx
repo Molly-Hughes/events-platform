@@ -36,7 +36,10 @@ export function DashboardPage() {
   }, []);
 
   return (
-    <main className="p-6 bg-antiFlashWhite text-darkPurple space-y-8">
+    <main
+      role="main"
+      className="p-6 bg-antiFlashWhite text-darkPurple space-y-8"
+    >
       <section className="bg-white shadow-md rounded-2xl p-6 flex flex-col lg:flex-row justify-between items-center gap-6">
         <div className="space-y-2 text-center lg:text-left">
           <h1 className="text-2xl font-bold text-frenchViolet flex items-center gap-2">
@@ -47,21 +50,21 @@ export function DashboardPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-xl">
           <div className="bg-white rounded-xl border p-4 text-center">
             <FaCalendarAlt className="text-frenchViolet text-xl mx-auto mb-1" />
-            <p className="text-sm font-medium">Total Events</p>
-            <p className="text-xl font-bold">{totalEvents}</p>
+            <h2 className="text-sm font-medium">Total Events</h2>
+            <h3 className="text-xl font-bold">{totalEvents}</h3>
           </div>
           <div className="bg-white rounded-xl border p-4 text-center">
             <HiOutlineLightningBolt className="text-frenchViolet text-xl mx-auto mb-1" />
-            <p className="text-sm font-medium">Upcoming Events</p>
-            <p className="text-xl font-bold">{upcomingEvents}</p>
+            <h2 className="text-sm font-medium">Upcoming Events</h2>
+            <h3 className="text-xl font-bold">{upcomingEvents}</h3>
           </div>
           <div className="bg-white rounded-xl border p-4 text-center">
             <FaUsers className="text-frenchViolet text-xl mx-auto mb-1" />
-            <p className="text-sm font-medium">Sign Ups</p>
-            <p className="text-xl font-bold">{totalSignUps}</p>
+            <h2 className="text-sm font-medium">Sign Ups</h2>
+            <h3 className="text-xl font-bold">{totalSignUps}</h3>
           </div>
         </div>
       </section>
@@ -69,14 +72,14 @@ export function DashboardPage() {
       <CreateAnEvent />
 
       <section className="mx-auto p-6 space-y-6 bg-white shadow-md rounded-2xl">
-        <div>
+        <header>
           <h2 className="text-xl font-semibold text-frenchViolet">
             Manage events
           </h2>
           <p className="text-base">
             Edit, update, or delete your existing events.
           </p>
-        </div>
+        </header>
         <EventCards />
       </section>
     </main>
