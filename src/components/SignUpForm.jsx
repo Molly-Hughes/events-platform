@@ -68,7 +68,7 @@ export function SignupForm({ eventId, onSuccess }) {
           value={name}
           placeholder="Enter your full name"
           onChange={(e) => setName(e.target.value)}
-          className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+          className={`bg-white w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
             formErrors.name
               ? "border-red-500 focus:ring-red-400"
               : "border-gray-300 focus:ring-frenchViolet"
@@ -90,7 +90,7 @@ export function SignupForm({ eventId, onSuccess }) {
           value={email}
           placeholder="Enter your email address"
           onChange={(e) => setEmail(e.target.value)}
-          className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+          className={`bg-white w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
             formErrors.email
               ? "border-red-500 focus:ring-red-400"
               : "border-gray-300 focus:ring-frenchViolet"
@@ -105,7 +105,7 @@ export function SignupForm({ eventId, onSuccess }) {
       <button
         type="submit"
         disabled={submitting}
-        className={`bg-frenchViolet text-white px-6 py-2 rounded-full hover:bg-darkPurple transition ${
+        className={`bg-frenchViolet text-white px-6 py-2 rounded-full  w-full hover:bg-darkPurple transition ${
           submitting ? "opacity-60 cursor-not-allowed" : ""
         }`}
       >
