@@ -109,11 +109,17 @@ export function CreateAnEvent() {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 text-darkPurple">
-      <h2 className="text-2xl font-semibold mb-2">Create an Event</h2>
-      <p className="mb-6">To create an event, please use the form below.</p>
+    <div className="bg-white shadow-md rounded-2xl p-6 flex flex-col lg:flex-row justify-between items-center gap-6">
+      <div className="lg:w-1/3 space-y-2 text-center lg:text-left">
+        <h2 className="text-2xl font-semibold text-frenchViolet">
+          Create an event
+        </h2>
+        <p className="text-base text-gray-700">
+          To create an event, please use the form below.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="lg:w-2/3 w-full space-y-4 ">
         {[
           { name: "title", type: "text", placeholder: "Event title" },
           { name: "description", type: "text", placeholder: "Description" },
@@ -129,7 +135,7 @@ export function CreateAnEvent() {
               placeholder={placeholder}
               value={formData[name]}
               onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 transition ${
+              className={`text-base w-full px-4 py-2 border rounded-xl focus:outline-none focus:ring-2 transition ${
                 errors[name]
                   ? "border-red-500 focus:ring-red-400"
                   : "border-gray-300 focus:ring-frenchViolet"
