@@ -26,13 +26,12 @@ export function EventFilters({
           id="search"
           type="text"
           placeholder="Search by title or description"
-          className="bg-white w-full focus:outline-frenchViolet px-4 py-2 rounded border"
+          className="bg-white text-darkPurple w-full focus:outline-frenchViolet px-4 py-2 rounded border"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-       
       <div className="w-full md:w-1/4">
         <label htmlFor="location-filter" className="sr-only">
           Filter by location
@@ -41,7 +40,7 @@ export function EventFilters({
           id="location-filter"
           value={selectedLocation}
           onChange={(e) => setSelectedLocation(e.target.value)}
-          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border"
+          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border text-darkPurple"
         >
           <option value="">All Locations</option>
           {uniqueLocations.map((loc) => (
@@ -59,7 +58,7 @@ export function EventFilters({
         <input
           id="date-filter"
           type="date"
-          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border"
+          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border text-darkPurple"
           value={selectedDate}
           onChange={(e) => setSelectedDate(e.target.value)}
         />
@@ -73,7 +72,7 @@ export function EventFilters({
           id="sort-order"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border"
+          className="bg-white focus:outline-frenchViolet w-full px-4 py-2 rounded border text-darkPurple"
         >
           <option value="asc">Date ascending</option>
           <option value="desc">Date descending</option>
